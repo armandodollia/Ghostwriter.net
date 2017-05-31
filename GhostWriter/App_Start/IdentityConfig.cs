@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using GhostWriter.Models;
+using Ghostwriter.Entities;
+using Ghostwriter.Entities.Models;
 
 namespace GhostWriter
 {

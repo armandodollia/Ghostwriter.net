@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GhostWriter.Models;
+using Ghostwriter.Entities.Models;
 
 namespace GhostWriter.Controllers
 {
