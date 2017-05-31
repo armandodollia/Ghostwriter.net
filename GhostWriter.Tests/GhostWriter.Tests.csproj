@@ -91,9 +91,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GhostWriter\GhostWriter.csproj">
+    <ProjectReference Include="..\GhostWriter\GhostWriter.Web.csproj">
       <Project>{B74952A3-14E2-4FCA-AC14-DBA999702696}</Project>
-      <Name>GhostWriter</Name>
+      <Name>GhostWriter.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
