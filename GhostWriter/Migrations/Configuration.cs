@@ -63,6 +63,20 @@ namespace GhostWriter.Migrations
                     }
                 );
             }
+
+            var posts = context.Posts.ToList();
+
+            for (int i = 0; i < posts.Count; i++)
+            {
+                context.Comments.AddOrUpdate(p => p.CommentBody,
+                    new Comment
+                    {
+                        PostId = posts[i].Id,
+                        CommenterId = users[i].Id,
+                        CommentBody = "I am a comment, much less toxic than the ones on YouTube!"
+                    }
+                );
+            }
         }
     }
 }
