@@ -38,12 +38,14 @@ namespace GhostWriter.Migrations
 
             for (int i = 0; i < 10; i++)
             {
-                context.Users.AddOrUpdate( u => u.UserName,
+                context.Users.AddOrUpdate(u => u.UserName,
                     new ApplicationUser
                     {
                         UserName = $"test{i}@test.com",
                         Email = $"test{i}@test.com",
-                        PasswordHash = password
+                        PasswordHash = password,
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        LockoutEnabled = true
                     }
                 );
             }
