@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostWriter.Web", "GhostWriter\GhostWriter.Web.csproj", "{B74952A3-14E2-4FCA-AC14-DBA999702696}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostWriter.Tests", "GhostWriter.Tests\GhostWriter.Tests.csproj", "{A629B716-E6D6-49E6-A0A9-12892144BC0D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostwriter.Entities", "Ghostwriter.Entities\Ghostwriter.Entities.csproj", "{889C7C6E-621C-47BC-8507-0842798CD033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostWriter.Contexts", "GhostWriter.Contexts\GhostWriter.Contexts.csproj", "{7A384899-C91A-4053-B9E6-54713521F3A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{889C7C6E-621C-47BC-8507-0842798CD033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{889C7C6E-621C-47BC-8507-0842798CD033}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{889C7C6E-621C-47BC-8507-0842798CD033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A384899-C91A-4053-B9E6-54713521F3A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A384899-C91A-4053-B9E6-54713521F3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A384899-C91A-4053-B9E6-54713521F3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A384899-C91A-4053-B9E6-54713521F3A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

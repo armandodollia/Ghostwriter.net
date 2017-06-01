@@ -19,5 +19,9 @@ namespace Ghostwriter.Entities.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual ICollection<Vote> Votes { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

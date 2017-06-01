@@ -14,14 +14,21 @@ namespace Ghostwriter.Entities
         public int Id { get; set; }
 
         [Required]
-        //[ForeignKey("ApplicationUser")]
-        public int VoterId { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string VoterId { get; set; }
 
-        //[ForeignKey("VoterId")]
+        [ForeignKey("VoterId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public int CommentId { get; set; }
 
+        [ForeignKey("CommentId")]
+        public virtual Comment Comment { get; set; }
+
         public int PostId { get; set; }
+
+        [ForeignKey("PostId")]
+
+        public virtual Post Post { get; set; }
     }
 }

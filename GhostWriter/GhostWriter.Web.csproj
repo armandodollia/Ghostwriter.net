@@ -191,9 +191,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="DataContexts\CommentsDb.cs" />
-    <Compile Include="DataContexts\PostsDb.cs" />
-    <Compile Include="DataContexts\VoteDb.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -262,6 +259,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DataContexts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -279,6 +277,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GhostWriter.Contexts\GhostWriter.Contexts.csproj">
+      <Project>{7a384899-c91a-4053-b9e6-54713521f3a5}</Project>
+      <Name>GhostWriter.Contexts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ghostwriter.Entities\Ghostwriter.Entities.csproj">
       <Project>{889c7c6e-621c-47bc-8507-0842798cd033}</Project>
       <Name>Ghostwriter.Entities</Name>
