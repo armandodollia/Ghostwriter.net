@@ -50,7 +50,19 @@ namespace GhostWriter.Migrations
                 );
             }
 
+            var users = context.Users.ToList();
 
+            for (int i = 0; i < users.Count; i++)
+            {
+                context.Posts.AddOrUpdate(p => p.Title,
+                    new Post
+                    {
+                        Title = $"Title {i}",
+                        PosterId = users[i].Id,
+                        PostBody = "WOW! Look at me! I am text on a screen from a SQL database!"
+                    }
+                );
+            }
         }
     }
 }
