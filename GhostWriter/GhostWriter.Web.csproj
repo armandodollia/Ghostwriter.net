@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Faker.NET4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Faker.Net.1.0.3\lib\net40\Faker.NET4.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -281,9 +284,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GhostWriter.Contexts\GhostWriter.Contexts.csproj">
+    <ProjectReference Include="..\GhostWriter.Contexts\GhostWriter.Context.csproj">
       <Project>{7a384899-c91a-4053-b9e6-54713521f3a5}</Project>
-      <Name>GhostWriter.Contexts</Name>
+      <Name>GhostWriter.Context</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ghostwriter.Entities\Ghostwriter.Entities.csproj">
       <Project>{889c7c6e-621c-47bc-8507-0842798cd033}</Project>

@@ -37,7 +37,7 @@ namespace Ghostwriter.Entities
             var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
             var currentUsername = !string.IsNullOrEmpty(System.Web.HttpContext.Current?.User?.Identity?.Name)
-                ? HttpContext.Current.User.Identity.Name
+                ? HttpContext.Current.User.Identity.Name 
                 : "Anonymous";
 
             foreach (var entity in entities)

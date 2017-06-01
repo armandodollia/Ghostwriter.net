@@ -78,7 +78,7 @@ namespace GhostWriter.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 255),
                         PostBody = c.String(nullable: false),
-                        IsPublished = c.Boolean(nullable: false),
+                        IsPublished = c.Boolean(nullable: false, defaultValue: false),
                         PosterId = c.String(nullable: false, maxLength: 128),
                         DateCreated = c.DateTime(),
                         UserCreated = c.String(),

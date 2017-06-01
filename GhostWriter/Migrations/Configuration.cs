@@ -1,18 +1,21 @@
 namespace GhostWriter.Migrations
 {
+    using Ghostwriter.Entities;
+    using Ghostwriter.Entities.Models;
+    using Microsoft.AspNet.Identity;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Ghostwriter.Entities.GhostWriterDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<GhostWriterDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Ghostwriter.Entities.GhostWriterDbContext context)
+        protected override void Seed(GhostWriterDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -26,6 +29,26 @@ namespace GhostWriter.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            //string[] Authors = new string[] { "William Shakespeare", "J-K Rowling", "George R.R. Martin" };
+
+            var passwordHash = new PasswordHasher();
+            string password = passwordHash.HashPassword("Password@123");
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                context.Users.AddOrUpdate( u => u.UserName,
+                    new ApplicationUser
+                    {
+                        UserName = $"test{i}@test.com",
+                        Email = $"test{i}@test.com",
+                        PasswordHash = password
+                    }
+                );
+            }
+
+
         }
     }
 }

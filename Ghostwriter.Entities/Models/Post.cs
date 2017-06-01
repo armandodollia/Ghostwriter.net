@@ -8,6 +8,11 @@ namespace Ghostwriter.Entities
 {
     public class Post : BaseEntity
     {
+        public Post()
+        {
+            IsPublished = false;
+        }
+        
         [Key]
         public int Id { get; set; }
 
