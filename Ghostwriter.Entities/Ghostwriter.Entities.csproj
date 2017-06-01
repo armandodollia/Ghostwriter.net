@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseEntity.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Post.cs" />

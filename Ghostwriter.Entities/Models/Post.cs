@@ -3,14 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ghostwriter.Entities
 {
-    public class Post
+    public class Post : BaseEntity
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -29,5 +27,6 @@ namespace Ghostwriter.Entities
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual ICollection<Vote> Votes { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
