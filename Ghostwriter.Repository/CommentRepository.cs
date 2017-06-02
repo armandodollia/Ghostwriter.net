@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace Ghostwriter.Repository
 {
-    class CommentRepository : ICommentRepository, IDisposable
+    public class CommentRepository : ICommentRepository, IDisposable
     {
         private GhostWriterDbContext context;
 

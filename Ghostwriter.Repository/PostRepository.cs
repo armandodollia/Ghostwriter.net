@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Ghostwriter.Repository
 {
-    class PostRepository : IPostRepository, IDisposable
+    public class PostRepository : IPostRepository, IDisposable
     {
         private GhostWriterDbContext context;
 

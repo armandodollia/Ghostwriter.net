@@ -56,9 +56,11 @@
     <Compile Include="CommentRepository.cs" />
     <Compile Include="Interfaces\ICommentRepository.cs" />
     <Compile Include="Interfaces\IPostRepository.cs" />
+    <Compile Include="Interfaces\IUserInterface.cs" />
     <Compile Include="Interfaces\IVoteRepository.cs" />
     <Compile Include="PostRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserRepository.cs" />
     <Compile Include="VoteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
