@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ghostwriter.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,24 @@ namespace GhostWriter.Controllers
 {
     public class PostsController : Controller
     {
+        private IPostRepository postRepository;
+
+        public PostsController()
+        {
+            this.postRepository = new PostRepository(new Ghostwriter.Entities.GhostWriterDbContext());
+        }
+
+        public PostsController(IPostRepository postRepository)
+        {
+            this.postRepository = postRepository;
+        }
+
         // GET: Posts
         public ActionResult Index()
         {
-            return View();
+            var posts = from p in postRepository.GetPosts()
+                        select p;
+            return View(posts.ToList());
         }
 
         // GET: Posts/Details/5
