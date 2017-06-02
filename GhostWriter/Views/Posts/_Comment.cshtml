@@ -1,0 +1,5 @@
+﻿@model Ghostwriter.Entities.Comment
+
+<a href="@Url.Action("Edit", "Comments", new { id = Model.Id })" class="list-group-item">
+    <p class="list-group-item-text">@Model.CommentBody</p>
+</a>

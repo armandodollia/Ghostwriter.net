@@ -22,6 +22,7 @@ namespace GhostWriter.Controllers
         }
 
         // GET: Posts
+        [HttpGet]
         public ActionResult Index()
         {
             var posts = from p in postRepository.GetPosts()
@@ -30,9 +31,11 @@ namespace GhostWriter.Controllers
         }
 
         // GET: Posts/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
-            return View();
+            var post = postRepository.GetPostById(id);
+            return View(post);
         }
 
         // GET: Posts/Create
