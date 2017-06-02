@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostwriter.Entities", "Gho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostWriter.Context", "GhostWriter.Contexts\GhostWriter.Context.csproj", "{7A384899-C91A-4053-B9E6-54713521F3A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostwriter.Repository", "Ghostwriter.Repository\Ghostwriter.Repository.csproj", "{04008D90-7B2C-4B38-9498-267443868AE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7A384899-C91A-4053-B9E6-54713521F3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A384899-C91A-4053-B9E6-54713521F3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A384899-C91A-4053-B9E6-54713521F3A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04008D90-7B2C-4B38-9498-267443868AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04008D90-7B2C-4B38-9498-267443868AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04008D90-7B2C-4B38-9498-267443868AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04008D90-7B2C-4B38-9498-267443868AE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

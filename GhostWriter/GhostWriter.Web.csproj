@@ -186,14 +186,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="bin\App_Start\BundleConfig.cs" />
+    <Compile Include="bin\App_Start\FilterConfig.cs" />
+    <Compile Include="bin\App_Start\IdentityConfig.cs" />
+    <Compile Include="bin\App_Start\RouteConfig.cs" />
+    <Compile Include="bin\App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -267,6 +268,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Posts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -291,6 +293,10 @@
     <ProjectReference Include="..\Ghostwriter.Entities\Ghostwriter.Entities.csproj">
       <Project>{889c7c6e-621c-47bc-8507-0842798cd033}</Project>
       <Name>Ghostwriter.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ghostwriter.Repository\Ghostwriter.Repository.csproj">
+      <Project>{04008d90-7b2c-4b38-9498-267443868ae1}</Project>
+      <Name>Ghostwriter.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
