@@ -1,4 +1,5 @@
 ﻿using Ghostwriter.Entities;
+using Ghostwriter.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,9 @@ namespace Ghostwriter.Repository
 {
     public interface IPostRepository : IDisposable
     {
-        IEnumerable<Post> GetPosts();
-        Post GetPostById(int postId);
+        IEnumerable<PostViewModel> GetPosts();
+        PostViewModel GetPostById(int postId);
+        PostDetailViewModel GetDetailedPostByID(int postId);
         void CreatePost(Post post);
         void DeletePost(int postId);
         void UpdatePost(Post post);

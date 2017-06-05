@@ -1,7 +1,7 @@
-﻿@model Ghostwriter.Entities.Post
+﻿@model Ghostwriter.Entities.Models.PostViewModel
 
 
 <a href="@Url.Action("Details", "Posts", new { id = Model.Id })" class="list-group-item">
     <h4 class="list-group-item-heading">@Model.Title</h4>
-    <p class="list-group-item-text">@Model.PostBody</p>
+    <p class="list-group-item-text">@Model.Body</p>
 </a>

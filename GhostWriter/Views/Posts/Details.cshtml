@@ -1,9 +1,11 @@
-﻿@model Ghostwriter.Entities.Post
+﻿@model Ghostwriter.Entities.Models.PostDetailViewModel
 
 <div class="page-header">
     <h1>@Model.Title</h1>
-    <p><small>@Model.PostBody</small></p>
+    <p><small>@Model.Body</small></p>
 </div>
+
+
 
 @foreach (var comment in Model.Comments)
 {

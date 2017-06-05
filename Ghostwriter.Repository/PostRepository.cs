@@ -1,4 +1,5 @@
 ﻿using Ghostwriter.Entities;
+using Ghostwriter.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,18 +23,59 @@ namespace Ghostwriter.Repository
 
         public void DeletePost(int postId)
         {
-            Post post = this.GetPostById(postId);
+            Post post = context.Posts.Find(postId);
             context.Posts.Remove(post);
         }
 
-        public Post GetPostById(int postId)
+        public PostViewModel GetPostById(int postId)
         {
-            return context.Posts.Find(postId);
+            var post = from p in context.Posts
+                       where p.Id == postId
+                       select new PostViewModel()
+                       {
+                           Id = p.Id,
+                           Title = p.Title,
+                           Body = p.PostBody,
+                           PosterId = p.PosterId,
+                           IsPublished = p.IsPublished
+                       };
+
+            return post.First();
+             
         }
 
-        public IEnumerable<Post> GetPosts()
+        public IEnumerable<PostViewModel> GetPosts()
         {
-            return context.Posts.ToList();
+            return context.Posts.Select(p => new PostViewModel()
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Body = p.PostBody,
+                PosterId = p.PosterId,
+                IsPublished = p.IsPublished
+            }).ToList();
+        }
+
+        public PostDetailViewModel GetDetailedPostByID(int postId)
+        {
+            var post = from p in context.Posts
+                       where p.Id == postId
+                       select new PostDetailViewModel()
+                       {
+                           Id = p.Id,
+                           Title = p.Title,
+                           Body = p.PostBody,
+                           PosterId = p.PosterId,
+                           IsPublished = p.IsPublished,
+                           Comments = p.Comments.Select(c => new CommentViewModel()
+                                      { Id = c.Id,
+                                        CommenterId = c.CommenterId,
+                                        Body = c.CommentBody
+                                      }).ToList()
+
+                       };
+
+            return post.First();
         }
 
         public void Save()
@@ -68,6 +110,8 @@ namespace Ghostwriter.Repository
 
             GC.SuppressFinalize(this);
         }
+
+
         #endregion
     }
 }

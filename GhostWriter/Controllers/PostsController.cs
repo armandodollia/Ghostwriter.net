@@ -10,31 +10,35 @@ namespace GhostWriter.Controllers
     public class PostsController : Controller
     {
         private IPostRepository postRepository;
+        private ICommentRepository commentRepository;
 
         public PostsController()
         {
-            this.postRepository = new PostRepository(new Ghostwriter.Entities.GhostWriterDbContext());
+            var context = new Ghostwriter.Entities.GhostWriterDbContext();
+            this.postRepository = new PostRepository(context);
+            this.commentRepository = new CommentRepository(context);
         }
 
-        public PostsController(IPostRepository postRepository)
+        public PostsController(IPostRepository postRepository, ICommentRepository commentRepository)
         {
             this.postRepository = postRepository;
+            this.commentRepository = commentRepository;
         }
 
         // GET: Posts
         [HttpGet]
         public ActionResult Index()
         {
-            var posts = from p in postRepository.GetPosts()
-                        select p;
-            return View(posts.ToList());
+            var posts = postRepository.GetPosts();
+            return View(posts);
         }
 
         // GET: Posts/Details/5
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var post = postRepository.GetPostById(id);
+            var post = postRepository.GetDetailedPostByID(id);
+            //post.Comments = commentRepository.GetCommentsByPostId(id);
             return View(post);
         }
 
