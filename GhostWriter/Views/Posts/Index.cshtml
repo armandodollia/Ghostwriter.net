@@ -1,0 +1,14 @@
+﻿@model List<Ghostwriter.Entities.Post>
+
+@{ 
+    ViewBag.Title = "Posts";
+}
+
+<br/>
+
+<div class="list-group">
+    @foreach (var post in Model)
+    {
+        @Html.Partial("_Post", post)
+    }
+</div>
