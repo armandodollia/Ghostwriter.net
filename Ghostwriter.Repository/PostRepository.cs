@@ -29,53 +29,31 @@ namespace Ghostwriter.Repository
 
         public PostViewModel GetPostById(int postId)
         {
-            var post = from p in context.Posts
-                       where p.Id == postId
-                       select new PostViewModel()
-                       {
-                           Id = p.Id,
-                           Title = p.Title,
-                           Body = p.PostBody,
-                           PosterId = p.PosterId,
-                           IsPublished = p.IsPublished
-                       };
+            var post = context.Posts.Where(p => p.Id == postId)
+                       //.Select(p => new PostViewModel()
+                       //{
+                       //    Id = p.Id,
+                       //    Title = p.Title,
+                       //    Body = p.PostBody,
+                       //    PosterId = p.PosterId,
+                       //    IsPublished = p.IsPublished
+                       //})
+                       .First();
 
-            return post.First();
+            var postModel = AutoMapper.Mapper.Map<Post, PostViewModel>(post); 
+
+            return postModel;
              
         }
 
         public IEnumerable<PostViewModel> GetPosts()
         {
-            return context.Posts.Select(p => new PostViewModel()
-            {
-                Id = p.Id,
-                Title = p.Title,
-                Body = p.PostBody,
-                PosterId = p.PosterId,
-                IsPublished = p.IsPublished
-            }).ToList();
+            return AutoMapper.Mapper.Map<List<Post>, List<PostViewModel>>(context.Posts.ToList());
         }
 
         public PostDetailViewModel GetDetailedPostByID(int postId)
         {
-            var post = from p in context.Posts
-                       where p.Id == postId
-                       select new PostDetailViewModel()
-                       {
-                           Id = p.Id,
-                           Title = p.Title,
-                           Body = p.PostBody,
-                           PosterId = p.PosterId,
-                           IsPublished = p.IsPublished,
-                           Comments = p.Comments.Select(c => new CommentViewModel()
-                                      { Id = c.Id,
-                                        CommenterId = c.CommenterId,
-                                        Body = c.CommentBody
-                                      }).ToList()
-
-                       };
-
-            return post.First();
+            return AutoMapper.Mapper.Map<Post, PostDetailViewModel>(context.Posts.Find(postId));
         }
 
         public void Save()
