@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using AutoMapper.QueryableExtensions;
 
 namespace Ghostwriter.Repository
 {
@@ -29,31 +30,27 @@ namespace Ghostwriter.Repository
 
         public PostViewModel GetPostById(int postId)
         {
-            var post = context.Posts.Where(p => p.Id == postId)
-                       //.Select(p => new PostViewModel()
-                       //{
-                       //    Id = p.Id,
-                       //    Title = p.Title,
-                       //    Body = p.PostBody,
-                       //    PosterId = p.PosterId,
-                       //    IsPublished = p.IsPublished
-                       //})
-                       .First();
-
-            var postModel = AutoMapper.Mapper.Map<Post, PostViewModel>(post); 
-
-            return postModel;
+            return context.Posts
+                .Where(p => p.Id == postId)
+                .ProjectTo<PostViewModel>()
+                .First();
+            //return AutoMapper.Mapper.Map<Post, PostViewModel>(context.Posts.Find(postId)); 
              
         }
 
         public IEnumerable<PostViewModel> GetPosts()
         {
-            return AutoMapper.Mapper.Map<List<Post>, List<PostViewModel>>(context.Posts.ToList());
+            return context.Posts.ProjectTo<PostViewModel>().ToList();
+            //return AutoMapper.Mapper.Map<List<Post>, List<PostViewModel>>(context.Posts.ToList());
         }
 
         public PostDetailViewModel GetDetailedPostByID(int postId)
         {
-            return AutoMapper.Mapper.Map<Post, PostDetailViewModel>(context.Posts.Find(postId));
+            return context.Posts
+                .Where(p => p.Id == postId)
+                .ProjectTo<PostDetailViewModel>()
+                .First();
+            //return AutoMapper.Mapper.Map<Post, PostDetailViewModel>(context.Posts.Find(postId));
         }
 
         public void Save()
