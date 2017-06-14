@@ -1,4 +1,5 @@
-﻿using Ghostwriter.Repository;
+﻿using Ghostwriter.Entities.Models;
+using Ghostwriter.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,16 +68,20 @@ namespace GhostWriter.Controllers
         // GET: Posts/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var post = postRepository.GetPostToEditById(id);
+            return View(post);
         }
 
         // POST: Posts/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        //public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(PostEditViewModel model)
         {
             try
             {
                 // TODO: Add update logic here
+                postRepository.UpdateEditPost(model);
+                postRepository.Save();
 
                 return RedirectToAction("Index");
             }

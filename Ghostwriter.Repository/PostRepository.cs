@@ -28,20 +28,24 @@ namespace Ghostwriter.Repository
             context.Posts.Remove(post);
         }
 
-        public PostViewModel GetPostById(int postId)
+        public Post GetPostById(int postId)
         {
-            return context.Posts
-                .Where(p => p.Id == postId)
-                .ProjectTo<PostViewModel>()
-                .First();
-            //return AutoMapper.Mapper.Map<Post, PostViewModel>(context.Posts.Find(postId)); 
-             
+            return context.Posts.Find(postId);
+        }
+
+        public PostViewModel GetPostViewById(int postId)
+        {
+            return AutoMapper.Mapper.Map<Post, PostViewModel>(context.Posts.Find(postId));
+        }
+
+        public PostEditViewModel GetPostToEditById(int postId)
+        {
+            return AutoMapper.Mapper.Map<Post, PostEditViewModel>(context.Posts.Find(postId));
         }
 
         public IEnumerable<PostViewModel> GetPosts()
         {
-            return context.Posts.ProjectTo<PostViewModel>().ToList();
-            //return AutoMapper.Mapper.Map<List<Post>, List<PostViewModel>>(context.Posts.ToList());
+            return AutoMapper.Mapper.Map<List<Post>, List<PostViewModel>>(context.Posts.ToList());
         }
 
         public PostDetailViewModel GetDetailedPostByID(int postId)
@@ -50,7 +54,6 @@ namespace Ghostwriter.Repository
                 .Where(p => p.Id == postId)
                 .ProjectTo<PostDetailViewModel>()
                 .First();
-            //return AutoMapper.Mapper.Map<Post, PostDetailViewModel>(context.Posts.Find(postId));
         }
 
         public void Save()
@@ -61,6 +64,15 @@ namespace Ghostwriter.Repository
         public void UpdatePost(Post post)
         {
             context.Entry(post).State = EntityState.Modified;
+        }
+
+        public void UpdateEditPost(PostEditViewModel model)
+        {
+            var post = this.GetPostById(model.Id);
+
+            AutoMapper.Mapper.Map(model, post);
+
+            this.UpdatePost(post);
         }
 
         #region IDisposable Support

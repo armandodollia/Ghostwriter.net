@@ -11,11 +11,14 @@ namespace Ghostwriter.Repository
     public interface IPostRepository : IDisposable
     {
         IEnumerable<PostViewModel> GetPosts();
-        PostViewModel GetPostById(int postId);
+        Post GetPostById(int postId);
+        PostViewModel GetPostViewById(int postId);
+        PostEditViewModel GetPostToEditById(int postId);
         PostDetailViewModel GetDetailedPostByID(int postId);
         void CreatePost(Post post);
         void DeletePost(int postId);
         void UpdatePost(Post post);
+        void UpdateEditPost(PostEditViewModel editPost);
         void Save();
     }
 }
