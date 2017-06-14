@@ -1,4 +1,5 @@
-﻿using Ghostwriter.Repository;
+﻿using Ghostwriter.Entities.Models;
+using Ghostwriter.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,31 +11,35 @@ namespace GhostWriter.Controllers
     public class PostsController : Controller
     {
         private IPostRepository postRepository;
+        private ICommentRepository commentRepository;
 
         public PostsController()
         {
-            this.postRepository = new PostRepository(new Ghostwriter.Entities.GhostWriterDbContext());
+            var context = new Ghostwriter.Entities.GhostWriterDbContext();
+            this.postRepository = new PostRepository(context);
+            this.commentRepository = new CommentRepository(context);
         }
 
-        public PostsController(IPostRepository postRepository)
+        public PostsController(IPostRepository postRepository, ICommentRepository commentRepository)
         {
             this.postRepository = postRepository;
+            this.commentRepository = commentRepository;
         }
 
         // GET: Posts
         [HttpGet]
         public ActionResult Index()
         {
-            var posts = from p in postRepository.GetPosts()
-                        select p;
-            return View(posts.ToList());
+            var posts = postRepository.GetPosts();
+            return View(posts);
         }
 
         // GET: Posts/Details/5
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var post = postRepository.GetPostById(id);
+            var post = postRepository.GetDetailedPostByID(id);
+            //post.Comments = commentRepository.GetCommentsByPostId(id);
             return View(post);
         }
 
@@ -63,16 +68,20 @@ namespace GhostWriter.Controllers
         // GET: Posts/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var post = postRepository.GetPostToEditById(id);
+            return View(post);
         }
 
         // POST: Posts/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        //public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(PostEditViewModel model)
         {
             try
             {
                 // TODO: Add update logic here
+                postRepository.UpdateEditPost(model);
+                postRepository.Save();
 
                 return RedirectToAction("Index");
             }

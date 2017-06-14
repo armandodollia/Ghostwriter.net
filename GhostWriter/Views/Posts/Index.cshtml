@@ -1,4 +1,4 @@
-﻿@model List<Ghostwriter.Entities.Post>
+﻿@model List<Ghostwriter.Entities.Models.PostViewModel>
 
 @{ 
     ViewBag.Title = "Posts";
@@ -12,3 +12,4 @@
         @Html.Partial("_Post", post)
     }
 </div>
+
