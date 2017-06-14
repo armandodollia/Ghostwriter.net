@@ -74,12 +74,10 @@ namespace GhostWriter.Controllers
 
         // POST: Posts/Edit/5
         [HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
         public ActionResult Edit(PostEditViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
                 postRepository.UpdateEditPost(model);
                 postRepository.Save();
 
