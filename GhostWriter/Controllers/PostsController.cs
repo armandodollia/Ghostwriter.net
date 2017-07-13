@@ -1,4 +1,5 @@
-﻿using Ghostwriter.Entities.Models;
+﻿using Ghostwriter.Entities;
+using Ghostwriter.Entities.Models;
 using Ghostwriter.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,19 +12,16 @@ namespace GhostWriter.Controllers
     public class PostsController : Controller
     {
         private IPostRepository postRepository;
-        private ICommentRepository commentRepository;
 
-        public PostsController()
-        {
-            var context = new Ghostwriter.Entities.GhostWriterDbContext();
-            this.postRepository = new PostRepository(context);
-            this.commentRepository = new CommentRepository(context);
-        }
+        //public PostsController()
+        //{
+        //    var context = new GhostWriterDbContext();
+        //    postRepository = new PostRepository(context);
+        //}
 
-        public PostsController(IPostRepository postRepository, ICommentRepository commentRepository)
+        public PostsController(IPostRepository postRepository)
         {
             this.postRepository = postRepository;
-            this.commentRepository = commentRepository;
         }
 
         // GET: Posts
@@ -39,7 +37,6 @@ namespace GhostWriter.Controllers
         public ActionResult Details(int id)
         {
             var post = postRepository.GetDetailedPostByID(id);
-            //post.Comments = commentRepository.GetCommentsByPostId(id);
             return View(post);
         }
 

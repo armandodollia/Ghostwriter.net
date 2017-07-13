@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ghostwriter.Repository
 {
-    interface IVoteRepository : IDisposable
+    public interface IVoteRepository : IDisposable
     {
         IEnumerable<Vote> GetVotes();
         Vote GetVoteById(int voteId);
