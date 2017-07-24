@@ -18,7 +18,6 @@ namespace GhostWriter.Filters
         private bool IsOwner(int postId, string userName)
         {
             string userId = userRepository.GetUserIdByName(userName);
-            //var postId = Convert.ToInt32(stringPostId);
             return postRepository.AreRelated(postId, userId);
         }
 
