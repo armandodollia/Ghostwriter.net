@@ -1,6 +1,7 @@
 ﻿using Ghostwriter.Entities;
 using Ghostwriter.Entities.Models;
 using Ghostwriter.Repository;
+using GhostWriter.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,24 +12,20 @@ namespace GhostWriter.Controllers
 {
     public class PostsController : Controller
     {
-        private IPostRepository postRepository;
+        private IPostRepository _postRepository;
+        private IUserRepository _userRepository;
 
-        //public PostsController()
-        //{
-        //    var context = new GhostWriterDbContext();
-        //    postRepository = new PostRepository(context);
-        //}
-
-        public PostsController(IPostRepository postRepository)
+        public PostsController(IPostRepository postRepository, IUserRepository userRepository)
         {
-            this.postRepository = postRepository;
+            this._postRepository = postRepository;
+            this._userRepository = userRepository;
         }
 
         // GET: Posts
         [HttpGet]
         public ActionResult Index()
         {
-            var posts = postRepository.GetPosts();
+            var posts = _postRepository.GetPosts();
             return View(posts);
         }
 
@@ -36,47 +33,64 @@ namespace GhostWriter.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var post = postRepository.GetDetailedPostByID(id);
+            var post = _postRepository.GetDetailedPostByID(id);
             return View(post);
         }
 
         // GET: Posts/Create
+        [Authorize]
         public ActionResult Create()
         {
-            return View();
+            return View(new PostEditViewModel());
         }
 
         // POST: Posts/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [Authorize]
+        public ActionResult Create(PostEditViewModel newPost)
         {
-            try
+            var post = new Post();
+            if (HttpContext.User.Identity.IsAuthenticated)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                try
+                {
+                    AutoMapper.Mapper.Map(newPost, post);
+                    post.PosterId = _userRepository.GetUserIdByName(HttpContext.User.Identity.Name);
+                    _postRepository.CreatePost(post);
+                    _postRepository.Save();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Login");
             }
+            
         }
 
         // GET: Posts/Edit/5
+        [Authorize]
+        [UserAuthorizationFilter]
         public ActionResult Edit(int id)
         {
-            var post = postRepository.GetPostToEditById(id);
+            var post = _postRepository.GetPostToEditById(id);
             return View(post);
         }
 
         // POST: Posts/Edit/5
         [HttpPost]
+        [Authorize]
+        [UserAuthorizationFilter]
         public ActionResult Edit(PostEditViewModel model)
         {
             try
             {
-                postRepository.UpdateEditPost(model);
-                postRepository.Save();
+                _postRepository.UpdateEditPost(model);
+                _postRepository.Save();
 
                 return RedirectToAction("Index");
             }

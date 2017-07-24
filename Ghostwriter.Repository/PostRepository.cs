@@ -56,6 +56,12 @@ namespace Ghostwriter.Repository
                 .First();
         }
 
+        public bool AreRelated(int postId, string userId)
+        {
+            Post post = this.GetPostById(postId);
+            return post.PosterId == userId;
+        }
+
         public void Save()
         {
             context.SaveChanges();
