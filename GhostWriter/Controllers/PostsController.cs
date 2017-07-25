@@ -25,7 +25,7 @@ namespace GhostWriter.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var posts = _postRepository.GetPosts();
+            var posts = AutoMapper.Mapper.Map<List<Post>, List<PostViewModel>>(_postRepository.GetPosts().ToList());
             return View(posts);
         }
 
@@ -33,7 +33,7 @@ namespace GhostWriter.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var post = _postRepository.GetDetailedPostByID(id);
+            var post = _postRepository.GetPostById(id);
             ViewBag.ShowEditButton = _userRepository.GetUserById(post.PosterId).UserName.Equals(System.Web.HttpContext.Current.User.Identity.Name, StringComparison.OrdinalIgnoreCase);
             return View(post);
         }

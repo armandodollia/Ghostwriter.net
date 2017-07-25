@@ -60,5 +60,7 @@ namespace Ghostwriter.Entities
         public System.Data.Entity.DbSet<Ghostwriter.Entities.Models.PostViewModel> PostViewModels { get; set; }
 
         public System.Data.Entity.DbSet<Ghostwriter.Entities.Models.PostEditViewModel> PostEditViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<Ghostwriter.Entities.Models.CommentViewModel> CommentViewModels { get; set; }
     }
 }
