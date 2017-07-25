@@ -33,7 +33,7 @@ namespace GhostWriter.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var post = _postRepository.GetPostById(id);
+            var post = AutoMapper.Mapper.Map<Post, PostDetailViewModel>(_postRepository.GetPostById(id));
             ViewBag.ShowEditButton = _userRepository.GetUserById(post.PosterId).UserName.Equals(System.Web.HttpContext.Current.User.Identity.Name, StringComparison.OrdinalIgnoreCase);
             return View(post);
         }
@@ -78,7 +78,7 @@ namespace GhostWriter.Controllers
         [UserAuthorizationFilter]
         public ActionResult Edit(int id)
         {
-            var post = _postRepository.GetPostToEditById(id);
+            var post = AutoMapper.Mapper.Map<Post, PostEditViewModel>(_postRepository.GetPostById(id));
             return View(post);
         }
 

@@ -35,29 +35,10 @@ namespace Ghostwriter.Repository
                 .First();
         }
 
-        public PostViewModel GetPostViewById(int postId)
-        {
-            return AutoMapper.Mapper.Map<Post, PostViewModel>(_context.Posts.Find(postId));
-        }
-
-        public PostEditViewModel GetPostToEditById(int postId)
-        {
-            return AutoMapper.Mapper.Map<Post, PostEditViewModel>(_context.Posts.Find(postId));
-        }
-
         public IEnumerable<Post> GetPosts()
         {
             return _context.Posts.ToList();
-            //return AutoMapper.Mapper.Map<List<Post>, List<PostViewModel>>(_context.Posts.ToList());
         }
-
-        //public PostDetailViewModel GetDetailedPostByID(int postId)
-        //{
-        //    return _context.Posts
-        //        .Where(p => p.Id == postId)
-        //        .ProjectTo<PostDetailViewModel>()
-        //        .First();
-        //}
 
         public bool AreRelated(int postId, string userId)
         {

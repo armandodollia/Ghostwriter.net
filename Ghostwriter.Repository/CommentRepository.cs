@@ -36,14 +36,9 @@ namespace Ghostwriter.Repository
                 .First();
         }
 
-        public IEnumerable<CommentViewModel> GetComments()
+        public IEnumerable<Comment> GetComments()
         {
-            return _context.Comments.Select(c => new CommentViewModel()
-            {
-                Id = c.Id,
-                CommenterId = c.CommenterId,
-                Body = c.CommentBody
-            });
+            return _context.Comments.ToList();
         }
 
         public void Save()
@@ -56,30 +51,34 @@ namespace Ghostwriter.Repository
             _context.Entry(comment).State = EntityState.Modified;
         }
 
-        public IEnumerable<CommentViewModel> GetCommentsByPostId(int PostId)
+        //public IEnumerable<CommentViewModel> GetCommentsByPostId(int PostId)
+        //{
+        //    var comments = from c in _context.Comments
+        //                   where c.PostId == PostId
+        //                   select new CommentViewModel()
+        //                   {
+        //                       Id = c.Id,
+        //                       CommenterId = c.CommenterId,
+        //                       Body = c.CommentBody
+        //                   };
+
+        //    return comments.ToList();
+        //}
+
+        public IEnumerable<Comment> GetCommentsByPostId(int postId)
         {
             var comments = from c in _context.Comments
-                           where c.PostId == PostId
-                           select new CommentViewModel()
-                           {
-                               Id = c.Id,
-                               CommenterId = c.CommenterId,
-                               Body = c.CommentBody
-                           };
-                           
+                           where c.PostId == postId
+                           select new Comment();
+
             return comments.ToList();
         }
 
-        public IEnumerable<CommentViewModel> GetCommentsByCommenterId(string CommenterId)
+        public IEnumerable<Comment> GetCommentsByCommenterId(string commenterId)
         {
             var comments = from c in _context.Comments
-                           where c.CommenterId == CommenterId
-                           select new CommentViewModel()
-                           {
-                               Id = c.Id,
-                               CommenterId = c.CommenterId,
-                               Body = c.CommentBody
-                           };
+                           where c.CommenterId == commenterId
+                           select new Comment();
 
             return comments;
         }
