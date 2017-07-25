@@ -10,9 +10,10 @@ namespace Ghostwriter.Repository
 {
     public interface ICommentRepository : IDisposable
     {
-        IEnumerable<CommentViewModel> GetComments();
-        IEnumerable<CommentViewModel> GetCommentsByPostId(int PostId);
-        IEnumerable<CommentViewModel> GetCommentsByCommenterId(string CommenterId);
+        IEnumerable<Comment> GetComments();
+        IEnumerable<Comment> GetCommentsByPostId(int PostId);
+        IEnumerable<Comment> GetCommentsByCommenterId(string CommenterId);
+        bool AreRelated(int commentId, string userId);
         Comment GetCommentById(int commentId);
         void CreateComment(Comment comment);
         void DeleteComment(int commentId);

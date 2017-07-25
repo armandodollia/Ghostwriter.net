@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Ghostwriter.Repository
 {
-    interface IUserInterface : IDisposable
+    public interface IUserRepository : IDisposable
     {
         IEnumerable<ApplicationUser> GetUsers();
         ApplicationUser GetUserById(string userId);
+        string GetUserIdByName(string name);
         void CreateUser(ApplicationUser user);
         void DeleteUser(string userId);
         void UpdateUser(ApplicationUser User);

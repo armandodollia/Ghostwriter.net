@@ -1,10 +1,6 @@
-﻿using Ghostwriter.Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
+﻿using AutoMapper;
 using Ghostwriter.Entities;
+using Ghostwriter.Entities.Models;
 
 namespace GhostWriter.Converters
 {

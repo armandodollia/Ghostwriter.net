@@ -11,73 +11,66 @@ namespace Ghostwriter.Repository
 {
     public class CommentRepository : ICommentRepository, IDisposable
     {
-        private GhostWriterDbContext context;
+        private GhostWriterDbContext _context;
 
         public CommentRepository(GhostWriterDbContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public void CreateComment(Comment comment)
         {
-            context.Comments.Add(comment);
+            _context.Comments.Add(comment);
         }
 
         public void DeleteComment(int commentId)
         {
             Comment comment = this.GetCommentById(commentId);
-            context.Comments.Remove(comment);
+            _context.Comments.Remove(comment);
         }
 
         public Comment GetCommentById(int commentId)
         {
-            return context.Comments.Find(commentId);
+            return _context.Comments
+                .Where(c => c.Id == commentId)
+                .First();
         }
 
-        public IEnumerable<CommentViewModel> GetComments()
+        public IEnumerable<Comment> GetComments()
         {
-            return context.Comments.Select(c => new CommentViewModel()
-            {
-                Id = c.Id,
-                CommenterId = c.CommenterId,
-                Body = c.CommentBody
-            });
+            return _context.Comments.ToList();
         }
 
         public void Save()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void UpdateComment(Comment comment)
         {
-            context.Entry(comment).State = EntityState.Modified;
+            _context.Entry(comment).State = EntityState.Modified;
         }
 
-        public IEnumerable<CommentViewModel> GetCommentsByPostId(int PostId)
+        public bool AreRelated(int commentId, string userId)
         {
-            var comments = from c in context.Comments
-                           where c.PostId == PostId
-                           select new CommentViewModel()
-                           {
-                               Id = c.Id,
-                               CommenterId = c.CommenterId,
-                               Body = c.CommentBody
-                           };
-                           
+            Comment comment = this.GetCommentById(commentId);
+            return comment.CommenterId == userId;
+        }
+
+        public IEnumerable<Comment> GetCommentsByPostId(int postId)
+        {
+            var comments = from c in _context.Comments
+                           where c.PostId == postId
+                           select new Comment();
+
             return comments.ToList();
         }
 
-        public IEnumerable<CommentViewModel> GetCommentsByCommenterId(string CommenterId)
+        public IEnumerable<Comment> GetCommentsByCommenterId(string commenterId)
         {
-            var comments = from c in context.Comments
-                           where c.CommenterId == CommenterId
-                           select new CommentViewModel()
-                           {
-                               Id = c.Id,
-                               CommenterId = c.CommenterId,
-                               Body = c.CommentBody
-                           };
+            var comments = from c in _context.Comments
+                           where c.CommenterId == commenterId
+                           select new Comment();
 
             return comments;
         }
@@ -91,7 +84,7 @@ namespace Ghostwriter.Repository
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    _context.Dispose();
                 }
 
                 disposedValue = true;

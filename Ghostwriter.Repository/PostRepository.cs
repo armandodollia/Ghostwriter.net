@@ -10,69 +10,50 @@ namespace Ghostwriter.Repository
 {
     public class PostRepository : IPostRepository, IDisposable
     {
-        private GhostWriterDbContext context;
+        private GhostWriterDbContext _context;
 
         public PostRepository(GhostWriterDbContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public void CreatePost(Post post)
         {
-            context.Posts.Add(post);
+            _context.Posts.Add(post);
         }
 
         public void DeletePost(int postId)
         {
-            Post post = context.Posts.Find(postId);
-            context.Posts.Remove(post);
+            Post post = _context.Posts.Find(postId);
+            _context.Posts.Remove(post);
         }
 
         public Post GetPostById(int postId)
         {
-            return context.Posts.Find(postId);
-        }
-
-        public PostViewModel GetPostViewById(int postId)
-        {
-            return AutoMapper.Mapper.Map<Post, PostViewModel>(context.Posts.Find(postId));
-        }
-
-        public PostEditViewModel GetPostToEditById(int postId)
-        {
-            return AutoMapper.Mapper.Map<Post, PostEditViewModel>(context.Posts.Find(postId));
-        }
-
-        public IEnumerable<PostViewModel> GetPosts()
-        {
-            return AutoMapper.Mapper.Map<List<Post>, List<PostViewModel>>(context.Posts.ToList());
-        }
-
-        public PostDetailViewModel GetDetailedPostByID(int postId)
-        {
-            return context.Posts
+            return _context.Posts
                 .Where(p => p.Id == postId)
-                .ProjectTo<PostDetailViewModel>()
                 .First();
+        }
+
+        public IEnumerable<Post> GetPosts()
+        {
+            return _context.Posts.ToList();
+        }
+
+        public bool AreRelated(int postId, string userId)
+        {
+            Post post = this.GetPostById(postId);
+            return post.PosterId == userId;
         }
 
         public void Save()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void UpdatePost(Post post)
         {
-            context.Entry(post).State = EntityState.Modified;
-        }
-
-        public void UpdateEditPost(PostEditViewModel model)
-        {
-            var post = this.GetPostById(model.Id);
-
-            AutoMapper.Mapper.Map(model, post);
-
-            this.UpdatePost(post);
+            _context.Entry(post).State = EntityState.Modified;
         }
 
         #region IDisposable Support
@@ -84,7 +65,7 @@ namespace Ghostwriter.Repository
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    _context.Dispose();
                 }
 
                 this.disposedValue = true;

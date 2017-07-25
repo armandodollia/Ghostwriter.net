@@ -56,5 +56,11 @@ namespace Ghostwriter.Entities
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Vote> Votes { get; set; }
+
+        public System.Data.Entity.DbSet<Ghostwriter.Entities.Models.PostViewModel> PostViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<Ghostwriter.Entities.Models.PostEditViewModel> PostEditViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<Ghostwriter.Entities.Models.CommentViewModel> CommentViewModels { get; set; }
     }
 }
