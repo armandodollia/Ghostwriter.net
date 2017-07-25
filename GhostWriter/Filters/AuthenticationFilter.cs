@@ -24,7 +24,6 @@ namespace GhostWriter.Filters
         public void OnAuthorization(AuthorizationContext filterContext)
         {
             var userName = filterContext.HttpContext.User.Identity.Name;
-
             var stringPostId = filterContext.Controller.ControllerContext.RouteData.Values["id"].ToString();
 
             if (int.TryParse(stringPostId, out int postId))
@@ -39,7 +38,6 @@ namespace GhostWriter.Filters
             {
                 filterContext.Result = new HttpNotFoundResult();
             }
-
         }
     }
 }

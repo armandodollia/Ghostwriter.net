@@ -34,6 +34,7 @@ namespace GhostWriter.Controllers
         public ActionResult Details(int id)
         {
             var post = _postRepository.GetDetailedPostByID(id);
+            ViewBag.ShowEditButton = _userRepository.GetUserById(post.PosterId).UserName.Equals(System.Web.HttpContext.Current.User.Identity.Name, StringComparison.OrdinalIgnoreCase);
             return View(post);
         }
 

@@ -3,9 +3,12 @@
 <div class="page-header">
     <h1>@Model.Title</h1>
     <p><small>@Model.Body</small></p>
-    <a href="@Url.Action("Edit", "Posts", new { id = Model.Id })" class="btn btn-default navbar-btn">
-        Edit
-    </a>
+    @if (ViewBag.ShowEditButton)
+    {
+        <a href="@Url.Action("Edit", "Posts", new { id = Model.Id })" class="btn btn-default navbar-btn">
+            Edit
+        </a>
+    }
 </div>
 
 

@@ -37,7 +37,9 @@ namespace Ghostwriter.Repository
 
         public ApplicationUser GetUserById(string userId)
         {
-            throw new NotImplementedException();
+            return context.Users
+                .Where(u => u.Id == userId)
+                .First();
         }
 
         public IEnumerable<ApplicationUser> GetUsers()
