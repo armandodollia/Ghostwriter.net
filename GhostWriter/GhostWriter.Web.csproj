@@ -229,6 +229,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Converters\CommentViewToCommentConverter.cs" />
     <Compile Include="Converters\PostEditToPostConverter.cs" />
     <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">

@@ -63,13 +63,16 @@ namespace GhostWriter.Controllers
 
         // POST: Comments/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(CommentViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
+                var comment = _commentRepository.GetCommentById(model.Id);
+                AutoMapper.Mapper.Map(model, comment);
+                _commentRepository.UpdateComment(comment);
+                _commentRepository.Save();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Posts", new { id = comment.PostId });
             }
             catch
             {

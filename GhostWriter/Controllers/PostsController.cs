@@ -90,7 +90,9 @@ namespace GhostWriter.Controllers
         {
             try
             {
-                _postRepository.UpdateEditPost(model);
+                var post = _postRepository.GetPostById(model.Id);
+                AutoMapper.Mapper.Map(model, post);
+                _postRepository.UpdatePost(post);
                 _postRepository.Save();
 
                 return RedirectToAction("Index");

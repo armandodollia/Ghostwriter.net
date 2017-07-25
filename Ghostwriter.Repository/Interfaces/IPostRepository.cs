@@ -16,7 +16,7 @@ namespace Ghostwriter.Repository
         void CreatePost(Post post);
         void DeletePost(int postId);
         void UpdatePost(Post post);
-        void UpdateEditPost(PostEditViewModel editPost);
+        //void UpdateEditPost(PostEditViewModel editPost);
         void Save();
     }
 }
