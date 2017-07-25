@@ -19,17 +19,6 @@ namespace GhostWriter.Controllers
             this._commentRepository = commentRepository;
             this._userRepository = userRepository;
         }
-        //// GET: Comments
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
-        //// GET: Comments/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
 
         // GET: Comments/Create
         [Authorize]

@@ -56,15 +56,6 @@ namespace Ghostwriter.Repository
             _context.Entry(post).State = EntityState.Modified;
         }
 
-        //public void UpdateEditPost(PostEditViewModel model)
-        //{
-        //    var post = this.GetPostById(model.Id);
-
-        //    AutoMapper.Mapper.Map(model, post);
-
-        //    this.UpdatePost(post);
-        //}
-
         #region IDisposable Support
         private bool disposedValue = false;
 
