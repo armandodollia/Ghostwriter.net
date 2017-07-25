@@ -231,7 +231,8 @@
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Converters\CommentViewToCommentConverter.cs" />
     <Compile Include="Converters\PostEditToPostConverter.cs" />
-    <Compile Include="Filters\AuthenticationFilter.cs" />
+    <Compile Include="Filters\CommentAuthorizationFilter.cs" />
+    <Compile Include="Filters\PostAuthorizationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

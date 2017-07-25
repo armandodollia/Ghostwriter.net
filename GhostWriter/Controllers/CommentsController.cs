@@ -1,5 +1,6 @@
 ﻿using Ghostwriter.Entities.Models;
 using Ghostwriter.Repository;
+using GhostWriter.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace GhostWriter.Controllers
         //}
 
         // GET: Comments/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -38,6 +40,7 @@ namespace GhostWriter.Controllers
 
         // POST: Comments/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(FormCollection collection)
         {
             try
@@ -53,6 +56,8 @@ namespace GhostWriter.Controllers
         }
 
         // GET: Comments/Edit/5
+        [Authorize]
+        [CommentAuthorizationFilter]
         public ActionResult Edit(int id)
         {
             var comment = new CommentViewModel();
@@ -63,6 +68,8 @@ namespace GhostWriter.Controllers
 
         // POST: Comments/Edit/5
         [HttpPost]
+        [Authorize]
+        [CommentAuthorizationFilter]
         public ActionResult Edit(CommentViewModel model)
         {
             try

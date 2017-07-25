@@ -75,7 +75,7 @@ namespace GhostWriter.Controllers
 
         // GET: Posts/Edit/5
         [Authorize]
-        [UserAuthorizationFilter]
+        [PostAuthorizationFilter]
         public ActionResult Edit(int id)
         {
             var post = AutoMapper.Mapper.Map<Post, PostEditViewModel>(_postRepository.GetPostById(id));
@@ -85,7 +85,7 @@ namespace GhostWriter.Controllers
         // POST: Posts/Edit/5
         [HttpPost]
         [Authorize]
-        [UserAuthorizationFilter]
+        [PostAuthorizationFilter]
         public ActionResult Edit(PostEditViewModel model)
         {
             try

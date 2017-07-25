@@ -51,19 +51,11 @@ namespace Ghostwriter.Repository
             _context.Entry(comment).State = EntityState.Modified;
         }
 
-        //public IEnumerable<CommentViewModel> GetCommentsByPostId(int PostId)
-        //{
-        //    var comments = from c in _context.Comments
-        //                   where c.PostId == PostId
-        //                   select new CommentViewModel()
-        //                   {
-        //                       Id = c.Id,
-        //                       CommenterId = c.CommenterId,
-        //                       Body = c.CommentBody
-        //                   };
-
-        //    return comments.ToList();
-        //}
+        public bool AreRelated(int commentId, string userId)
+        {
+            Comment comment = this.GetCommentById(commentId);
+            return comment.CommenterId == userId;
+        }
 
         public IEnumerable<Comment> GetCommentsByPostId(int postId)
         {

@@ -13,6 +13,7 @@ namespace Ghostwriter.Repository
         IEnumerable<Comment> GetComments();
         IEnumerable<Comment> GetCommentsByPostId(int PostId);
         IEnumerable<Comment> GetCommentsByCommenterId(string CommenterId);
+        bool AreRelated(int commentId, string userId);
         Comment GetCommentById(int commentId);
         void CreateComment(Comment comment);
         void DeleteComment(int commentId);
