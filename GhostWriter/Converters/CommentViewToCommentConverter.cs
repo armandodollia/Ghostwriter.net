@@ -11,6 +11,10 @@ namespace GhostWriter.Converters
             if (source == null || destination == null) return null;
 
             destination.CommentBody = source.Body;
+            if (source.PostId.HasValue)
+            {
+                destination.PostId = source.PostId.Value;
+            }
 
             return destination;
         }

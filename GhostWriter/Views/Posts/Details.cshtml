@@ -1,5 +1,6 @@
 ﻿@model Ghostwriter.Entities.Models.PostDetailViewModel
 
+
 <div class="page-header">
     <h1>@Model.Title</h1>
     <p><small>@Model.Body</small></p>
@@ -11,9 +12,23 @@
     }
 </div>
 
-
-
-@foreach (var comment in Model.Comments)
+@using (Html.BeginForm("Create", "Comments", FormMethod.Post))
 {
-    @Html.Partial("_Comment", comment)
+    @Html.AntiForgeryToken();
+    @Html.Hidden("PostId", Model.Id)
+    @Html.TextArea("Body", "")
+    <input type="submit" name="AddComment" value="Add Comment" />
 }
+
+
+
+@Html.ActionLink("New Comment", "Create", "Comments", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
+
+
+
+<ul class="list-group" id="comments_list">
+    @foreach (var comment in Model.Comments)
+    {
+        @Html.Partial("_Comment", comment)
+    }
+</ul>
