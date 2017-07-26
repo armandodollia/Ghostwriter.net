@@ -10,15 +10,11 @@ using System.Web.Mvc;
 
 namespace GhostWriter.Controllers
 {
-    public class PostsController : Controller
+    public class PostsController : BaseController
     {
-        private IPostRepository _postRepository;
-        private IUserRepository _userRepository;
 
-        public PostsController(IPostRepository postRepository, IUserRepository userRepository)
+        public PostsController(IPostRepository postRepository, IUserRepository userRepository) : base(postRepository, userRepository)
         {
-            this._postRepository = postRepository;
-            this._userRepository = userRepository;
         }
 
         // GET: Posts
@@ -56,7 +52,7 @@ namespace GhostWriter.Controllers
                 try
                 {
                     AutoMapper.Mapper.Map(newPost, post);
-                    post.PosterId = _userRepository.GetUserIdByName(HttpContext.User.Identity.Name);
+                    post.PosterId = GetUserId;
                     _postRepository.CreatePost(post);
                     _postRepository.Save();
                     return RedirectToAction("Index");

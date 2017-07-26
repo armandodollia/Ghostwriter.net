@@ -10,15 +10,10 @@ using System.Web.Mvc;
 
 namespace GhostWriter.Controllers
 {
-    public class CommentsController : Controller
+    public class CommentsController : BaseController
     {
-        private ICommentRepository _commentRepository;
-        private IUserRepository _userRepository;
-
-        public CommentsController(ICommentRepository commentRepository, IUserRepository userRepository)
+        public CommentsController(ICommentRepository commentRepository, IUserRepository userRepository) : base(commentRepository, userRepository)
         {
-            this._commentRepository = commentRepository;
-            this._userRepository = userRepository;
         }
 
         //// GET: Comments/Create
@@ -38,7 +33,7 @@ namespace GhostWriter.Controllers
             {
                 var comment = new Comment();
                 AutoMapper.Mapper.Map(model, comment);
-                comment.CommenterId = _userRepository.GetUserIdByName(HttpContext.User.Identity.Name);
+                comment.CommenterId = GetUserId;
                 _commentRepository.CreateComment(comment);
                 _commentRepository.Save();
                 return RedirectToAction("Details", "Posts", new { id = comment.PostId });
