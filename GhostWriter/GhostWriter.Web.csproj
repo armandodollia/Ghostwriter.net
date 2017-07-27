@@ -217,14 +217,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bin\App_Start\BundleConfig.cs" />
-    <Compile Include="bin\App_Start\FilterConfig.cs" />
-    <Compile Include="bin\App_Start\IdentityConfig.cs" />
-    <Compile Include="bin\App_Start\IoCConfig.cs" />
-    <Compile Include="bin\App_Start\MappingConfig.cs" />
-    <Compile Include="bin\App_Start\RouteConfig.cs" />
-    <Compile Include="bin\App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\IoCConfig.cs" />
+    <Compile Include="App_Start\MappingConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -327,6 +328,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

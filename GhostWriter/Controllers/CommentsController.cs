@@ -1,4 +1,5 @@
-﻿using Ghostwriter.Entities.Models;
+﻿using Ghostwriter.Entities;
+using Ghostwriter.Entities.Models;
 using Ghostwriter.Repository;
 using GhostWriter.Filters;
 using System;
@@ -9,38 +10,37 @@ using System.Web.Mvc;
 
 namespace GhostWriter.Controllers
 {
-    public class CommentsController : Controller
+    public class CommentsController : BaseController
     {
-        private ICommentRepository _commentRepository;
-        private IUserRepository _userRepository;
-
-        public CommentsController(ICommentRepository commentRepository, IUserRepository userRepository)
+        public CommentsController(ICommentRepository commentRepository, IUserRepository userRepository) : base(commentRepository, userRepository)
         {
-            this._commentRepository = commentRepository;
-            this._userRepository = userRepository;
         }
 
-        // GET: Comments/Create
-        [Authorize]
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //// GET: Comments/Create
+        //[Authorize]
+        //public ActionResult Create()
+        //{
+        //    var comment = new CommentViewModel();
+        //    return View(comment);
+        //}
 
         // POST: Comments/Create
         [HttpPost]
         [Authorize]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CommentViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                var comment = new Comment();
+                AutoMapper.Mapper.Map(model, comment);
+                comment.CommenterId = GetUserId;
+                _commentRepository.CreateComment(comment);
+                _commentRepository.Save();
+                return RedirectToAction("Details", "Posts", new { id = comment.PostId });
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                throw;
             }
         }
 
