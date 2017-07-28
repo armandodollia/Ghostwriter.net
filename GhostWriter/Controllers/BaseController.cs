@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace GhostWriter.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         protected readonly ICommentRepository _commentRepository;
         protected readonly IUserRepository _userRepository;
