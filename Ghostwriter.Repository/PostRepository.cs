@@ -32,6 +32,7 @@ namespace Ghostwriter.Repository
         {
             return from post in _context.Posts
                    where post.PosterId == posterId
+                   orderby post.IsPublished ascending
                    select post;
         }
 
