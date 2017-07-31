@@ -320,7 +320,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
-    <Content Include="Views\Posts\_Post.cshtml" />
+    <Content Include="Views\Shared\_Post.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\_Comment.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
