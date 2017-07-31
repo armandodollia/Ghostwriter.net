@@ -12,9 +12,11 @@ namespace GhostWriter.Controllers
 {
     public class PostsController : BaseController
     {
+        private IPostRepository _postRepository;
 
-        public PostsController(IPostRepository postRepository, IUserRepository userRepository) : base(postRepository, userRepository)
+        public PostsController(IPostRepository postRepository, IUserRepository userRepository) : base(userRepository)
         {
+            _postRepository = postRepository;
         }
 
         // GET: Posts
