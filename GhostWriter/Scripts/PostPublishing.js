@@ -3,26 +3,16 @@
     publish.init("#publishButton");
 });
 
-
 function Publisher(url)
 {
     var _self = this;
     var _url = url;
     var _publishButton = null;
 
-    this._onSuccess = function (data) {
-        if (data) {
-            _publishButton.text(data.IsPublished ? "Unpublish" : "Publish");
-        }
-        else {
-            alert("Could not publish this post");
-        }
-    }
-
-    this._onError = function (data) {
-        alert("Could not publish this post");
-    }
-
+    this.init = function (publishButtonId) {
+        _publishButton = $(publishButtonId);
+        _publishButton.on("click", this._onPublish);
+    };
 
     this._onPublish = function (e) {
         e.preventDefault;
@@ -37,8 +27,17 @@ function Publisher(url)
             });
     };
 
-    this.init = function (publishButtonId) {
-        _publishButton = $(publishButtonId);
-        _publishButton.on("click", this._onPublish);
+    this._onSuccess = function (data) {
+        if (data) {
+            _publishButton.text(data.IsPublished ? "Unpublish" : "Publish");
+        }
+        else {
+            alert("Could not publish this post");
+        }
     };
+
+    this._onError = function (data) {
+        alert("Could not publish this post");
+    };
+
 }
