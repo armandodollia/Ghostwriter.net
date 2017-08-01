@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Ghostwriter.Entities.Models.PostViewModel>
+
+<h1>@User.Identity.Name Profile</h1>
+<br>
+
+<h2>Published Posts</h2>
+@foreach (var post in Model)
+{
+    if (post.IsPublished)
+    {
+        @Html.Partial("_Post", post)
+    }
+}
+
+<h2>Un-published Posts</h2>
+@foreach (var post in Model)
+{
+    if (!post.IsPublished)
+    {
+        @Html.Partial("_Post", post)
+    }
+}

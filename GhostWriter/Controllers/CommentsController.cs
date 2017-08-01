@@ -12,8 +12,11 @@ namespace GhostWriter.Controllers
 {
     public class CommentsController : BaseController
     {
-        public CommentsController(ICommentRepository commentRepository, IUserRepository userRepository) : base(commentRepository, userRepository)
+        private ICommentRepository _commentRepository;
+
+        public CommentsController(ICommentRepository commentRepository, IUserRepository userRepository) : base(userRepository)
         {
+            _commentRepository = commentRepository;
         }
 
         //// GET: Comments/Create

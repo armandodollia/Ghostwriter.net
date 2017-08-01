@@ -9,6 +9,7 @@
         <a href="@Url.Action("Edit", "Posts", new { id = Model.Id })" class="btn btn-default navbar-btn">
             Edit
         </a>
+        <a id="publishButton" class="btn btn-default navbar-btn">@(Model.IsPublished ? "Unpublish" : "Publish")</a>
     }
 </div>
 
@@ -21,9 +22,7 @@
 }
 
 
-
 @Html.ActionLink("New Comment", "Create", "Comments", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
-
 
 
 <ul class="list-group" id="comments_list">
@@ -32,3 +31,11 @@
         @Html.Partial("_Comment", comment)
     }
 </ul>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/postPublishing.js")
+}
+
+<script type="text/javascript">
+    var _url = '@Url.Action("publish", "posts")';
+</script>

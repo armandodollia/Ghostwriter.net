@@ -10,6 +10,7 @@ namespace Ghostwriter.Repository
 {
     public interface IPostRepository : IDisposable
     {
+        IEnumerable<Post> GetPostsByPosterId(string posterId);
         IEnumerable<Post> GetPosts();
         Post GetPostById(int postId);
         bool AreRelated(int postId, string userId);

@@ -230,6 +230,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Converters\CommentViewToCommentConverter.cs" />
     <Compile Include="Converters\PostEditToPostConverter.cs" />
     <Compile Include="Filters\CommentAuthorizationFilter.cs" />
@@ -280,6 +281,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\postPublishing.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -319,12 +321,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
-    <Content Include="Views\Posts\_Post.cshtml" />
+    <Content Include="Views\Shared\_Post.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\_Comment.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Create.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
