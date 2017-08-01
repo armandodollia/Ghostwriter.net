@@ -10,7 +10,7 @@ function Publisher(url)
     var _url = url;
     var _publishButton = null;
 
-    function _onSuccess (data) {
+    this._onSuccess = function (data) {
         if (data) {
             _publishButton.text(data.IsPublished ? "Unpublish" : "Publish");
         }
@@ -19,7 +19,7 @@ function Publisher(url)
         }
     }
 
-    function _onError (data) {
+    this._onError = function (data) {
         alert("Could not publish this post");
     }
 
@@ -32,8 +32,8 @@ function Publisher(url)
             {
                 type: "POST",
                 url: _url + "/" + _postId,
-                success: function (data) { _onSuccess(data); },
-                error: function (data) { _onError(data); }
+                success: function (data) { _self._onSuccess(data); },
+                error: function (data) { _self._onError(data); }
             });
     };
 
