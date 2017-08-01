@@ -1,19 +1,19 @@
 ﻿$(function () {
     var postId = $("#PostId").val();
-    var $publishButton = $("#publishButton");
+    var publishButton = $("#publishButton");
 
-    $publishButton.on("click", function (e) {
+    publishButton.on("click", function (e) {
         e.preventDefault;
         $.ajax({
             type: "POST",
             url: "/Posts/Publish/" + postId
         })
             .done(function (response) {
-                if (response === "True") {
-                    $publishButton.text("Unpublish");
+                if (response.IsPublished) {
+                    publishButton.text("Unpublish");
                 }
                 else {
-                    $publishButton.text("Publish");
+                    publishButton.text("Publish");
                 }
             });
     });

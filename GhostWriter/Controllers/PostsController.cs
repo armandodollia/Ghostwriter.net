@@ -135,8 +135,8 @@ namespace GhostWriter.Controllers
             post.IsPublished ^= true;
             _postRepository.UpdatePost(post);
             _postRepository.Save();
-
-            return Content(post.IsPublished.ToString());
+            var postViewModel = AutoMapper.Mapper.Map<Post, PostViewModel>(post);
+            return Json(postViewModel);
         }
     }
 }
