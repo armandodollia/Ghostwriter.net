@@ -68,10 +68,11 @@ namespace GhostWriter.Controllers
             {
                 return RedirectToAction("Login");
             }
-            
+
         }
 
         // GET: Posts/Edit/5
+        // TODO: make this a PUT
         [Authorize]
         [PostAuthorizationFilter]
         public ActionResult Edit(int id)
@@ -121,6 +122,21 @@ namespace GhostWriter.Controllers
             {
                 return View();
             }
+        }
+
+        // POST: Posts/Publish/5
+        [HttpPost]
+        [Authorize]
+        [PostAuthorizationFilter]
+        public ActionResult Publish(int id)
+        {
+            var postId = id;
+            var post = _postRepository.GetPostById(id);
+            post.IsPublished ^= true;
+            _postRepository.UpdatePost(post);
+            _postRepository.Save();
+
+            return Content(post.IsPublished.ToString());
         }
     }
 }
