@@ -17,7 +17,8 @@ namespace Ghostwriter.Entities.Models
             return userIdentity;
         }
 
-        public virtual ICollection<Vote> Votes { get; set; }
+        public virtual ICollection<CommentVote> CommentVotes { get; set; }
+        public virtual ICollection<PostVote> PostVotes { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
     }

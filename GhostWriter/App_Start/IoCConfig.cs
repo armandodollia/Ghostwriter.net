@@ -21,7 +21,7 @@ namespace GhostWriter
             builder.RegisterType<PostRepository>().As<IPostRepository>().InstancePerRequest();
             builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest();
             builder.RegisterType<CommentRepository>().As<ICommentRepository>().InstancePerRequest();
-            builder.RegisterType<VoteRepository>().As<IVoteRepository>().InstancePerRequest();
+            //builder.RegisterType<VoteRepository>().As<IVoteRepository>().InstancePerRequest();
             builder.RegisterType<GhostWriterDbContext>().InstancePerLifetimeScope();
 
             var container = builder.Build();

@@ -58,6 +58,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GhostWriterDbContext.cs" />
+    <Compile Include="Migrations\201706011617124_Blog_Models_Creation.cs" />
+    <Compile Include="Migrations\201706011617124_Blog_Models_Creation.Designer.cs">
+      <DependentUpon>201706011617124_Blog_Models_Creation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708031809099_VoteSeparation.cs" />
+    <Compile Include="Migrations\201708031809099_VoteSeparation.Designer.cs">
+      <DependentUpon>201708031809099_VoteSeparation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +78,14 @@
       <Project>{889c7c6e-621c-47bc-8507-0842798cd033}</Project>
       <Name>Ghostwriter.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706011617124_Blog_Models_Creation.resx">
+      <DependentUpon>201706011617124_Blog_Models_Creation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708031809099_VoteSeparation.resx">
+      <DependentUpon>201708031809099_VoteSeparation.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

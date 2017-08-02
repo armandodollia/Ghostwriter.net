@@ -38,7 +38,7 @@ namespace GhostWriter.Migrations
 
             for (int i = 0; i < 10; i++)
             {
-                context.Users.AddOrUpdate(u => u.UserName,
+                context.Users.AddOrUpdate(u =>
                     new ApplicationUser
                     {
                         UserName = $"test{i}@test.com",
@@ -54,7 +54,7 @@ namespace GhostWriter.Migrations
 
             for (int i = 0; i < users.Count; i++)
             {
-                context.Posts.AddOrUpdate(p => p.Title,
+                context.Posts.AddOrUpdate(p =>
                     new Post
                     {
                         Title = $"Title {i}",
@@ -68,7 +68,7 @@ namespace GhostWriter.Migrations
 
             for (int i = 0; i < posts.Count; i++)
             {
-                context.Comments.AddOrUpdate(p => p.CommentBody,
+                context.Comments.AddOrUpdate(p =>
                     new Comment
                     {
                         PostId = posts[i].Id,

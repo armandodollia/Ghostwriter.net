@@ -238,11 +238,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706011617124_Blog_Models_Creation.cs" />
-    <Compile Include="Migrations\201706011617124_Blog_Models_Creation.Designer.cs">
-      <DependentUpon>201706011617124_Blog_Models_Creation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -350,11 +345,6 @@
       <Project>{04008d90-7b2c-4b38-9498-267443868ae1}</Project>
       <Name>Ghostwriter.Repository</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706011617124_Blog_Models_Creation.resx">
-      <DependentUpon>201706011617124_Blog_Models_Creation.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
