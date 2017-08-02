@@ -28,6 +28,13 @@ namespace Ghostwriter.Repository
             _context.Posts.Remove(post);
         }
 
+        public IEnumerable<Post> GetPublishedPosts()
+        {
+            return from post in _context.Posts
+                   where post.IsPublished
+                   select post;
+        }
+
         public IEnumerable<Post> GetPostsByPosterId(string posterId)
         {
             return from post in _context.Posts
