@@ -12,6 +12,7 @@ namespace Ghostwriter.Repository
     {
         IEnumerable<Post> GetPostsByPosterId(string posterId);
         IEnumerable<Post> GetPosts();
+        IEnumerable<Post> GetPublishedPosts();
         Post GetPostById(int postId);
         bool AreRelated(int postId, string userId);
         void CreatePost(Post post);

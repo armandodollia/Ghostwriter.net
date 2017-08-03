@@ -23,7 +23,7 @@ namespace GhostWriter.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var posts = AutoMapper.Mapper.Map<List<Post>, List<PostViewModel>>(_postRepository.GetPosts().ToList());
+            var posts = AutoMapper.Mapper.Map<List<Post>, List<PostViewModel>>(_postRepository.GetPublishedPosts().ToList());
             return View(posts);
         }
 

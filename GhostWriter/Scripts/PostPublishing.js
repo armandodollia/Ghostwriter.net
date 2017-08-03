@@ -39,5 +39,4 @@ function Publisher(url)
     this._onError = function (data) {
         alert("Could not publish this post");
     };
-
 }

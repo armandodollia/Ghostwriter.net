@@ -25,6 +25,7 @@ namespace Ghostwriter.Entities
         [ForeignKey("CommenterId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public virtual ICollection<Vote> Votes { get; set; }
+        //public virtual ICollection<Vote> Votes { get; set; }
+        public virtual ICollection<CommentVote> CommentVotes { get; set; }
     }
 }
