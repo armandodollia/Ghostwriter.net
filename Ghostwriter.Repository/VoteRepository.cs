@@ -1,72 +1,94 @@
-﻿//using Ghostwriter.Entities;
-//using System;
-//using System.Collections.Generic;
-//using System.Data.Entity;
-//using System.Linq;
+﻿using Ghostwriter.Entities;
+using Ghostwriter.Entities.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
-//namespace Ghostwriter.Repository
-//{
-//    public class VoteRepository : IVoteRepository, IDisposable
-//    {
-//        private GhostWriterDbContext context;
+namespace Ghostwriter.Repository
+{
+    public class VoteRepository : IVoteRepository, IDisposable
+    {
+        private GhostWriterDbContext context;
 
-//        public VoteRepository(GhostWriterDbContext context)
-//        {
-//            this.context = context;
-//        }
+        public VoteRepository(GhostWriterDbContext context)
+        {
+            this.context = context;
+        }
 
-//        public void CreateVote(Vote vote)
-//        {
-//            context.Votes.Add(vote);
-//        }
+        public void CreateVote(CommentVote commentVote)
+        {
+            context.CommentVotes.Add(commentVote);
+        }
 
-//        public void DeleteVote(int voteId)
-//        {
-//            Vote vote = this.GetVoteById(voteId);
-//            context.Votes.Remove(vote);
-//        }
+        public void CreateVote(PostVote postVote)
+        {
+            context.PostVotes.Add(postVote);
+        }
 
-//        public Vote GetVoteById(int voteId)
-//        {
-//            return context.Votes.Find(voteId);
-//        }
+        public void DeletePostVote(int voteId)
+        {
+            CommentVote vote = GetCommentVoteById(voteId);
+            context.CommentVotes.Remove(vote);
+        }
 
-//        public IEnumerable<Vote> GetVotes()
-//        {
-//            return context.Votes.ToList();
-//        }
+        public void DeletePostVote(int voteId)
+        {
+            PostVote vote = GetPostVoteById(voteId);
+            context.PostVotes.Remove(vote);
+        }
 
-//        public void Save()
-//        {
-//            context.SaveChanges();
-//        }
+        public CommentVote GetCommentVoteById(int voteId)
+        {
+            return context.CommentVotes.Find(voteId);
+        }
 
-//        public void UpdateVote(Vote vote)
-//        {
-//            context.Entry(vote).State = EntityState.Modified;
-//        }
+        public PostVote GetPostVoteById(int voteId)
+        {
+            return context.PostVotes.Find(voteId);
+        }
 
-//        #region IDisposable Support
-//        private bool disposedValue = false;
+        public IEnumerable<CommentVote> GetCommentVotes()
+        {
+            return context.CommentVotes.ToList();
+        }
 
-//        protected virtual void Dispose(bool disposing)
-//        {
-//            if (!disposedValue)
-//            {
-//                if (disposing)
-//                {
-//                    context.Dispose();
-//                }
+        public IEnumerable<PostVote> GetPostVotes()
+        {
+            return context.PostVotes.ToList();
+        }
 
-//                disposedValue = true;
-//            }
-//        }
+        public void Save()
+        {
+            context.SaveChanges();
+        }
 
-//        public void Dispose()
-//        {
-//            Dispose(true);
-//            GC.SuppressFinalize(this);
-//        }
-//        #endregion
-//    }
-//}
+        public void UpdateVote(Vote vote)
+        {
+            context.Entry(vote).State = EntityState.Modified;
+        }
+
+        #region IDisposable Support
+        private bool disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+    }
+}
