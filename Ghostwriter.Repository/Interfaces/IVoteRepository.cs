@@ -16,10 +16,10 @@ namespace Ghostwriter.Repository
         CommentVote GetCommentVoteById(int voteId);
         void CreateVote(CommentVote CommentVote);
         void CreateVote(PostVote PostVote);
+        void DeleteCommentVote(int voteId);
         void DeletePostVote(int voteId);
-        void DeletePostVote(int voteId);
-        void UpdateVote(CommentVote CommentVote);
-        void UpdateVote(PostVote PostVote);
+        void UpdateVote(CommentVote vote);
+        void UpdateVote(PostVote vote);
         void Save();
     }
 }

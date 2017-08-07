@@ -55,7 +55,6 @@ namespace Ghostwriter.Entities
 
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Post> Posts { get; set; }
-        //public DbSet<Vote> Votes { get; set; }
         public DbSet<PostVote> PostVotes { get; set; }
         public DbSet<CommentVote> CommentVotes { get; set; }
 

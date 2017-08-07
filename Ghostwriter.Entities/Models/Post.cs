@@ -31,7 +31,6 @@ namespace Ghostwriter.Entities
         [ForeignKey("PosterId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        //public virtual ICollection<Vote> Votes { get; set; }
         public virtual ICollection<PostVote> PostVotes { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
     }

@@ -9,8 +9,12 @@
         <a href="@Url.Action("Edit", "Posts", new { id = Model.Id })" class="btn btn-default navbar-btn">
             Edit
         </a>
-        <a id="publishButton" class="btn btn-default navbar-btn">@(Model.IsPublished ? "Unpublish" : "Publish")</a>
+        <a id="publishButton" class="btn btn-default navbar-btn">@(Model.IsPublished ? "Unpublish" : "Publish")</a>  
     }
+
+    <p>@(Model.HasVoted ? "Voted!" : "Not Voted!")</p>
+
+    <a id="LikeButton" class=""><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @Model.Votes.Count() Votes</a>
 </div>
 
 @using (Html.BeginForm("Create", "Comments", FormMethod.Post))

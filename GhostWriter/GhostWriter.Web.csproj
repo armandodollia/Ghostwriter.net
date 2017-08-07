@@ -222,6 +222,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\VotesController.cs" />
     <Compile Include="Converters\CommentViewToCommentConverter.cs" />
     <Compile Include="Converters\PostEditToPostConverter.cs" />
     <Compile Include="Filters\CommentAuthorizationFilter.cs" />
@@ -323,6 +324,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Votes\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GhostWriter.Contexts\GhostWriter.Context.csproj">

@@ -28,14 +28,14 @@ namespace Ghostwriter.Repository
 
         public void DeletePostVote(int voteId)
         {
-            CommentVote vote = GetCommentVoteById(voteId);
-            context.CommentVotes.Remove(vote);
-        }
-
-        public void DeletePostVote(int voteId)
-        {
             PostVote vote = GetPostVoteById(voteId);
             context.PostVotes.Remove(vote);
+        }
+
+        public void DeleteCommentVote(int voteId)
+        {
+            CommentVote vote = GetCommentVoteById(voteId);
+            context.CommentVotes.Remove(vote);
         }
 
         public CommentVote GetCommentVoteById(int voteId)
@@ -63,7 +63,12 @@ namespace Ghostwriter.Repository
             context.SaveChanges();
         }
 
-        public void UpdateVote(Vote vote)
+        public void UpdateVote(PostVote vote)
+        {
+            context.Entry(vote).State = EntityState.Modified;
+        }
+
+        public void UpdateVote(CommentVote vote)
         {
             context.Entry(vote).State = EntityState.Modified;
         }
