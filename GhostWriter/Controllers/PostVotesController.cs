@@ -7,11 +7,11 @@ using Ghostwriter.Repository;
 
 namespace GhostWriter.Controllers
 {
-    public class VotesController : BaseController
+    public class PostVotesController : BaseController
     {
         private IVoteRepository _voteRepository;
 
-        public VotesController(IUserRepository userRepository, IVoteRepository voteRepository) : base(userRepository)
+        public PostVotesController(IUserRepository userRepository, IVoteRepository voteRepository) : base(userRepository)
         {
             _voteRepository = voteRepository;
         }
@@ -51,6 +51,7 @@ namespace GhostWriter.Controllers
         }
 
         // GET: Votes/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             return View();

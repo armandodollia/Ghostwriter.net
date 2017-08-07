@@ -12,6 +12,8 @@ namespace Ghostwriter.Repository
     {
         IEnumerable<CommentVote> GetCommentVotes();
         IEnumerable<PostVote> GetPostVotes();
+        IEnumerable<PostVote> GetVotesByPostId(int postId);
+        IEnumerable<CommentVote> GetVotesByCommentId(int commentId);
         PostVote GetPostVoteById(int voteId);
         CommentVote GetCommentVoteById(int voteId);
         void CreateVote(CommentVote CommentVote);

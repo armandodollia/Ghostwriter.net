@@ -222,7 +222,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\VotesController.cs" />
+    <Compile Include="Controllers\PostVotesController.cs" />
     <Compile Include="Converters\CommentViewToCommentConverter.cs" />
     <Compile Include="Converters\PostEditToPostConverter.cs" />
     <Compile Include="Filters\CommentAuthorizationFilter.cs" />

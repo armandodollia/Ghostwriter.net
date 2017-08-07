@@ -9,68 +9,82 @@ namespace Ghostwriter.Repository
 {
     public class VoteRepository : IVoteRepository, IDisposable
     {
-        private GhostWriterDbContext context;
+        private GhostWriterDbContext _context;
 
         public VoteRepository(GhostWriterDbContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public void CreateVote(CommentVote commentVote)
         {
-            context.CommentVotes.Add(commentVote);
+            _context.CommentVotes.Add(commentVote);
         }
 
         public void CreateVote(PostVote postVote)
         {
-            context.PostVotes.Add(postVote);
+            _context.PostVotes.Add(postVote);
         }
 
         public void DeletePostVote(int voteId)
         {
             PostVote vote = GetPostVoteById(voteId);
-            context.PostVotes.Remove(vote);
+            _context.PostVotes.Remove(vote);
         }
 
         public void DeleteCommentVote(int voteId)
         {
             CommentVote vote = GetCommentVoteById(voteId);
-            context.CommentVotes.Remove(vote);
+            _context.CommentVotes.Remove(vote);
         }
 
         public CommentVote GetCommentVoteById(int voteId)
         {
-            return context.CommentVotes.Find(voteId);
+            return _context.CommentVotes.Find(voteId);
         }
 
         public PostVote GetPostVoteById(int voteId)
         {
-            return context.PostVotes.Find(voteId);
+            return _context.PostVotes.Find(voteId);
         }
 
         public IEnumerable<CommentVote> GetCommentVotes()
         {
-            return context.CommentVotes.ToList();
+            return _context.CommentVotes.ToList();
         }
 
         public IEnumerable<PostVote> GetPostVotes()
         {
-            return context.PostVotes.ToList();
+            return _context.PostVotes.ToList();
+        }
+
+        public IEnumerable<PostVote> GetVotesByPostId(int postId)
+        {
+            return from postVote in _context.PostVotes
+                   where postVote.PostId == postId
+                   select postVote;
+        }
+
+        public IEnumerable<CommentVote> GetVotesByCommentId(int commentId)
+        {
+            return from commentVote in _context.CommentVotes
+                   where commentVote.CommentId == commentId
+                   select commentVote;
         }
 
         public void Save()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void UpdateVote(PostVote vote)
         {
-            context.Entry(vote).State = EntityState.Modified;
+            _context.Entry(vote).State = EntityState.Modified;
         }
 
         public void UpdateVote(CommentVote vote)
         {
-            context.Entry(vote).State = EntityState.Modified;
+            _context.Entry(vote).State = EntityState.Modified;
         }
 
         #region IDisposable Support
@@ -82,7 +96,7 @@ namespace Ghostwriter.Repository
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    _context.Dispose();
                 }
 
                 disposedValue = true;

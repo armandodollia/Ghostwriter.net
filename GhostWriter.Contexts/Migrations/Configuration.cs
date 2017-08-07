@@ -36,47 +36,47 @@ namespace GhostWriter.Migrations
             string password = passwordHash.HashPassword("Password@123");
 
 
-            for (int i = 0; i < 10; i++)
-            {
-                context.Users.AddOrUpdate(u => u.UserName,
-                    new ApplicationUser
-                    {
-                        UserName = $"test{i}@test.com",
-                        Email = $"test{i}@test.com",
-                        PasswordHash = password,
-                        SecurityStamp = Guid.NewGuid().ToString(),
-                        LockoutEnabled = true
-                    }
-                );
-            }
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    context.Users.AddOrUpdate(u => u.UserName,
+            //        new ApplicationUser
+            //        {
+            //            UserName = $"test{i}@test.com",
+            //            Email = $"test{i}@test.com",
+            //            PasswordHash = password,
+            //            SecurityStamp = Guid.NewGuid().ToString(),
+            //            LockoutEnabled = true
+            //        }
+            //    );
+            //}
 
-            var users = context.Users.ToList();
+            //var users = context.Users.ToList();
 
-            for (int i = 0; i < users.Count; i++)
-            {
-                context.Posts.AddOrUpdate(p => p.Title,
-                    new Post
-                    {
-                        Title = $"Title {i}",
-                        PosterId = users[i].Id,
-                        PostBody = "WOW! Look at me! I am text on a screen from a SQL database!"
-                    }
-                );
-            }
+            //for (int i = 0; i < users.Count; i++)
+            //{
+            //    context.Posts.AddOrUpdate(p => p.Title,
+            //        new Post
+            //        {
+            //            Title = $"Title {i}",
+            //            PosterId = users[i].Id,
+            //            PostBody = "WOW! Look at me! I am text on a screen from a SQL database!"
+            //        }
+            //    );
+            //}
 
-            var posts = context.Posts.ToList();
+            //var posts = context.Posts.ToList();
 
-            for (int i = 0; i < posts.Count; i++)
-            {
-                context.Comments.AddOrUpdate(p => p.CommentBody,
-                    new Comment
-                    {
-                        PostId = posts[i].Id,
-                        CommenterId = users[i].Id,
-                        CommentBody = "I am a comment, much less toxic than the ones on YouTube!"
-                    }
-                );
-            }
+            //for (int i = 0; i < posts.Count; i++)
+            //{
+            //    context.Comments.AddOrUpdate(p => p.CommentBody,
+            //        new Comment
+            //        {
+            //            PostId = posts[i].Id,
+            //            CommenterId = users[i].Id,
+            //            CommentBody = "I am a comment, much less toxic than the ones on YouTube!"
+            //        }
+            //    );
+            //}
         }
     }
 }
