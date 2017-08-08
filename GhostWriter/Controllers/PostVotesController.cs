@@ -29,7 +29,7 @@ namespace GhostWriter.Controllers
                 vote.VoterId = GetUserId;
                 _voteRepository.CreateVote(vote);
                 _voteRepository.Save();
-                return RedirectToAction("Details", "Posts", new { Id = postId });
+                return RedirectToAction("Details", "Posts", new { id = postId });
             }
             catch
             {
@@ -39,14 +39,15 @@ namespace GhostWriter.Controllers
 
         // POST: Votes/Delete/5
         [HttpPost]
-        public ActionResult Delete(FormCollection collection)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                var test = collection;
-                // TODO: Add delete logic here
+                var postId = Convert.ToInt32(collection["PostId"]);
+                _voteRepository.DeletePostVote(id);
+                _voteRepository.Save();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Posts", new { id = postId });
             }
             catch
             {
