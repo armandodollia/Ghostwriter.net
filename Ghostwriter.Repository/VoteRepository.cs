@@ -40,7 +40,7 @@ namespace Ghostwriter.Repository
 
         public CommentVote GetCommentVoteById(int voteId)
         {
-            return _context.CommentVotes.Find(voteId);
+            return _context.CommentVotes.Where(v => v.Id == voteId).FirstOrDefault();
         }
 
         public PostVote GetPostVoteById(int voteId)

@@ -17,6 +17,7 @@
         @Html.AntiForgeryToken();
 
         @Html.Hidden("PostId", Model.Id)
+
         <button type="submit" id="likeButton" class="btn btn-default navbar-btn">
             <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
             @(Model.HasVoted ? "Un-Like!" : "Like!")
