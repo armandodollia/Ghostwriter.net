@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Ghostwriter.Repository;
 using Ghostwriter.Entities.Models;
+using GhostWriter.Filters;
 
 namespace GhostWriter.Controllers
 {
@@ -38,7 +39,8 @@ namespace GhostWriter.Controllers
         // POST: Votes/Delete/5
         [HttpPost]
         [Authorize]
-        public ActionResult Delete(PostVote vote)
+        [PostVoteAuthorizationFilter]
+        public ActionResult Delete(int id, PostVote vote)
         {
             try
             {

@@ -72,6 +72,18 @@ namespace Ghostwriter.Repository
                    select commentVote;
         }
 
+        public bool PostVoteAreRelated(int postVoteId, string userId)
+        {
+            PostVote postVote = this.GetPostVoteById(postVoteId);
+            return postVote.VoterId == userId;
+        }
+
+        public bool CommentVoteAreRelated(int commentVoteId, string userId)
+        {
+            CommentVote commentVote = this.GetCommentVoteById(commentVoteId);
+            return commentVote.VoterId == userId;
+        }
+
         public void Save()
         {
             _context.SaveChanges();

@@ -33,7 +33,7 @@ namespace GhostWriter.Controllers
         {
             var post = AutoMapper.Mapper.Map<Post, PostDetailViewModel>(_postRepository.GetPostById(id));
             post.HasVoted = post.Votes.Any(vote => vote.VoterId == GetUserId);
-            ViewBag.ShowEditButton = _userRepository.GetUserById(post.PosterId).UserName.Equals(System.Web.HttpContext.Current.User.Identity.Name, StringComparison.OrdinalIgnoreCase);
+            ViewBag.ShowEditButton = post.PosterId == GetUserId;
             return View(post);
         }
 
