@@ -19,10 +19,7 @@ namespace Ghostwriter.Repository
 
         public string GetUserIdByName(string name)
         {
-            return context.Users
-                .Where(u => u.UserName == name)
-                .First()
-                .Id;
+            return string.IsNullOrEmpty(name) ? string.Empty : context.Users.Where(u => u.UserName == name).First().Id;
         }
 
         public void CreateUser(ApplicationUser user)

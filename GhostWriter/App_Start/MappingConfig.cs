@@ -26,6 +26,10 @@ namespace GhostWriter
                 .ForMember(dest => dest.Body,
                            opt => opt.MapFrom(src => src.PostBody));
 
+                config.CreateMap<Post, PostDetailViewModel>()
+                .ForMember(dest => dest.Votes,
+                           opt => opt.MapFrom(src => src.PostVotes));
+
                 config.CreateMap<Comment, CommentViewModel>()
                 .ForMember(dest => dest.Body,
                            opt => opt.MapFrom(src => src.CommentBody));

@@ -75,6 +75,10 @@
     <Compile Include="Migrations\201708032036240_CompositeIndeces.Designer.cs">
       <DependentUpon>201708032036240_CompositeIndeces.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708072015207_FixPostVoteForeignKey.cs" />
+    <Compile Include="Migrations\201708072015207_FixPostVoteForeignKey.Designer.cs">
+      <DependentUpon>201708072015207_FixPostVoteForeignKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708032036240_CompositeIndeces.resx">
       <DependentUpon>201708032036240_CompositeIndeces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708072015207_FixPostVoteForeignKey.resx">
+      <DependentUpon>201708072015207_FixPostVoteForeignKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

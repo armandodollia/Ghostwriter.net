@@ -14,9 +14,9 @@ namespace Ghostwriter.Entities.Models
         public int Id { get; set; }
 
         [Required, Index("VoterAndPost", IsUnique = true, Order = 0)]
-        public int CommentId { get; set; }
+        public int PostId { get; set; }
 
-        [ForeignKey("CommentId")]
+        [ForeignKey("PostId")]
         public Post Post { get; set; }
 
         [Required, Index("VoterAndPost", IsUnique = true, Order = 1)]

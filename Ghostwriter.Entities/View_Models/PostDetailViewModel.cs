@@ -13,6 +13,8 @@ namespace Ghostwriter.Entities.Models
         public string Body { get; set; }
         public string PosterId { get; set; }
         public bool IsPublished { get; set; }
+        public bool HasVoted { get; set; }
         public IEnumerable<CommentViewModel> Comments { get; set; }
+        public IEnumerable<PostVote> Votes { get; set; }
     }
 }

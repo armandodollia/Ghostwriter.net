@@ -72,12 +72,12 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\CommentViewModel.cs" />
+    <Compile Include="View_Models\CommentViewModel.cs" />
     <Compile Include="Models\CommentVote.cs" />
     <Compile Include="Models\Post.cs" />
-    <Compile Include="Models\PostDetailViewModel.cs" />
-    <Compile Include="Models\PostEditViewModel.cs" />
-    <Compile Include="Models\PostViewModel.cs" />
+    <Compile Include="View_Models\PostDetailViewModel.cs" />
+    <Compile Include="View_Models\PostEditViewModel.cs" />
+    <Compile Include="View_Models\PostViewModel.cs" />
     <Compile Include="Models\PostVote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

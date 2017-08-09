@@ -16,10 +16,13 @@ namespace GhostWriter.Controllers
             _userRepository = userRepository;
         }
 
-        public string GetUserId {
+        public string GetUserId
+        {
             get
             {
-                return _userRepository.GetUserIdByName(HttpContext.User.Identity.Name);
+                var currentUser = HttpContext.User.Identity.Name;
+
+                return _userRepository.GetUserIdByName(currentUser);
             }
         }
     }
